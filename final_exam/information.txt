@@ -1,0 +1,22 @@
+LED = 13
+BT1 = 21
+BT2 = 26
+BT3 = 20
+BT4 = 19
+
+# ************for LCD************************
+
+# Define GPIO to LCD mapping
+LCD_RS = 23
+LCD_E = 27
+LCD_D4 = 18
+LCD_D5 = 17
+LCD_D6 = 14
+LCD_D7 = 3
+LED_ON = 2
+# Define some divice constants
+LCD_WIDTH = 16
+LCD_CHR = True
+LCD_CMD = False
+LCD_LINE_1 = 0x80 # 1 LCD RAM add
+LCD_LINE_2 = 0xC0 # 2 LCD RAM add

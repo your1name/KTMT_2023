@@ -1,5 +1,13 @@
-# For LCD
+# For Led
+LED = 13
+BT1 = 21
+BT2 = 26
+BT3 = 20
+BT4 = 19
+rl_1 = 16
+rl_2 = 12
 
+# For LCD
 ```python
 
 #Define GPIO cho LCD

@@ -37,12 +37,12 @@ def lcd_init():
     GPIO.setup(LCD_D7, GPIO.OUT) # DB7
     GPIO.setup(LED_ON, GPIO.OUT) # backlight enabls
     #Initalise display
-    lcd_byte(0x33, LCD_CMD)
-    lcd_byte(0x32, LCD_CMD)
-    lcd_byte(0x28, LCD_CMD)
-    lcd_byte(0x0C, LCD_CMD)
-    lcd_byte(0x06, LCD_CMD)
-    lcd_byte(0x01, LCD_CMD)
+    lcd_byte(0x33, LCD_CMD)  # Initialize
+    lcd_byte(0x32, LCD_CMD)  # Set to 4-bit mode
+    lcd_byte(0x06, LCD_CMD)  # Cursor move direction
+    lcd_byte(0x0C, LCD_CMD)  # Turn cursor off
+    lcd_byte(0x28, LCD_CMD)  # 2 line display
+    lcd_byte(0x01, LCD_CMD)  # Clear display
 
 def lcd_string(message, position, line):
     message = message.rjust(len(message) + position)

@@ -32,15 +32,15 @@ def main():
             if currentPWD2 != 0:
                 PWD2.ChangeDutyCycle(0)
                 time.sleep(1)
-                upPWD = int(0.2 * currentPWD1)
-                currentPWD1 = (currentPWD1 + upPWD) if currentPWD1 + upPWD < 100 else 100
-                if currentPWD1 == 0:
-                    currentPWD1 = 20
-                # thay đổi tốc độ theo biến currentPWD1
-                PWD1.ChangeDutyCycle(currentPWD1)
-                print("Tốc độ hiện tại: "+str(currentPWD1)+" theo chiều thuận")
-                currentPWD2 = 0
-                time.sleep(0.5)
+            upPWD = int(0.2 * currentPWD1)
+            currentPWD1 = (currentPWD1 + upPWD) if currentPWD1 + upPWD < 100 else 100
+            if currentPWD1 == 0:
+                currentPWD1 = 20
+            # thay đổi tốc độ theo biến currentPWD1
+            PWD1.ChangeDutyCycle(currentPWD1)
+            print("Tốc độ hiện tại: "+str(currentPWD1)+" theo chiều thuận")
+            currentPWD2 = 0
+            time.sleep(0.5)
         # giảm tốc và chay theo chiều kim đồng hồ
         if GPIO.input(BT2) == 0:
             print("Press BT2")

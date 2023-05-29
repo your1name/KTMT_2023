@@ -25,12 +25,13 @@ def main():
                 # Tim contour
                 _, contours, _ = cv2.findContours(
                     red_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-                result = cv2.bitwise_or(frame, frame, mask=red_mask)
+                
+                # result = cv2.bitwise_or(frame, frame, mask=red_mask)
 
-                draw(contours, result)
+                draw(contours, frame)
 
                 # cv2.imshow("Camera", src)
-                cv2.imshow('Threshold', result)
+                cv2.imshow('Threshold', frame)
                 # Press q to exit
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     # GPIO.cleanup()

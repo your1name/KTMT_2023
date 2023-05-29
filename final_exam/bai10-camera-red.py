@@ -34,6 +34,7 @@ def main():
                 # Press q to exit
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     # GPIO.cleanup()
+                    # cv2.destroyAllWindows()
                     cv2.destroyWindow('Threshold')
                     break
 

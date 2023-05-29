@@ -1,3 +1,6 @@
+# Bấm BT1 lần 1 Led sáng
+# Bấm BT1 lần 2 LED sáng và lặp lại
+
 import RPi.GPIO as GPIO
 import time
 

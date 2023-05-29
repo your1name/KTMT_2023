@@ -1,5 +1,5 @@
 
-# *hello word trên led matrix , từ ký tự 1 từ trái sang phải
+# *hello word trên led matrix , từng ký tự 1 từ trái sang phải
 
 import re
 import time
@@ -20,9 +20,12 @@ def main(cascaded, block_orentation, rotate):
     print("[-] Matrix initialized")
     #print hello world on the matrix display
     msg = "*Hello world"
-    # debugging purpose
-    print("[-] Printing: %s" % msg)
-    show_message(device, msg, fill = "white", font = proportional(CP437_FONT),scroll_delay=0.1)
+    
+    for item in msg:
+        # debugging purpose
+        print("[-] Printing: %s" % item)
+        show_message(device, item, fill = "white", font = proportional(CP437_FONT),scroll_delay=0.1)
+        time.sleep(0.1)
 
 if __name__ == "__main__":
     # cascaded = Number of cascaded MAX7219 LED matrices default=1

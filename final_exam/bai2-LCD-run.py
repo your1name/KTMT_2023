@@ -1,3 +1,7 @@
+# bấm BT1 lần 1 , hiện "Hello world" ra terminal
+# bấm BT1 lần 2 , từng ký tự chạy ra LCD phải qua trái
+# bấm BT1 lần 3 , từng ký tự chạy ra LCD trái qua phải
+
 import RPi.GPIO as GPIO
 import time
 

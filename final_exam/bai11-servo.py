@@ -1,3 +1,4 @@
+# bấm BT1, chỉnh servo 1 góc 5 độ, >180 thì quay về 0, hiện thị góc lên LCD
 import RPi.GPIO as GPIO
 import time
 
@@ -52,7 +53,7 @@ def main():
         # lcd_clear()
         lcd_string(text_direction)
         time.sleep(1)
-
+ 
 def controlservo(s, anglepulseBT):
     # sth cmt
     current = s.currentdirection()

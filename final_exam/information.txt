@@ -1,3 +1,5 @@
+# Bài 2 và Bài 9 sử dụng lcd_string() 3 tham số
+
 LED = 13
 BT1 = 21
 BT2 = 26
@@ -20,3 +22,5 @@ LCD_CHR = True
 LCD_CMD = False
 LCD_LINE_1 = 0x80 # 1 LCD RAM add
 LCD_LINE_2 = 0xC0 # 2 LCD RAM add
+
+# ************for LCD************************

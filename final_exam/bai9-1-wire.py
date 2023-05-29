@@ -1,3 +1,4 @@
+# Đo nhiệt, ẩm, hiển thị LCD
 import time
 import RPi.GPIO as GPIO
 
@@ -117,8 +118,13 @@ def main():
             # xu li khi gap loi, no se chay lai vong lap
             continue
 
-        text = str(round(temperature,1))+ 'C, ' + str(round(humidity,1)) + '%'
-        lcd_string(text)
+        # text = str(round(temperature,1))+ 'C, ' + str(round(humidity,1)) + '%'
+        # lcd_string(text, 0, 1)
+
+        nhiet = 'nhiet: ' + str(round(temperature,1))+ 'C'
+        am = 'am: ' +  str(round(humidity,1)) + '%'
+        lcd_string(nhiet, 0, 1)
+        lcd_string(am, 0, 2)
         
         print('temperature: %-3.1f C' % temperature)
         print('humidity: %-3.1f %%' % humidity)

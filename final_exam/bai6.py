@@ -1,5 +1,4 @@
 
-# *hello word trên led matrix , từ ký tự 1 từ trái sang phải
 import re
 import RPi.GPIO as GPIO
 import time
@@ -10,10 +9,11 @@ from luma.core.virtual import viewport
 from luma.core.legacy import text, show_message
 from luma.core.legacy.font import proportional, CP437_FONT, LCD_FONT
 
+ispressBT2 = False
+ispressBT3 = False
+ispressBT4 = False
 
 
-
-# Định nghĩa các callback
 def bt2_callback(channel):
     global ispressBT2
     global ispressBT3
@@ -22,13 +22,11 @@ def bt2_callback(channel):
         ispressBT2 = True
 
 
-# Định nghĩa các callback
 def bt3_callback(channel):
     global ispressBT3
     print("BT3 press")
     ispressBT3 = True
     
-# Định nghĩa các callback
 def bt4_callback(channel):
     global ispressBT2
     global ispressBT3
@@ -40,12 +38,13 @@ def bt4_callback(channel):
         ispressBT4 = True
 
 
-
-
 def main(cascaded, block_orentation, rotate):
     BT2 = 26
     BT3 = 20
     BT4 = 19
+
+    DIR = 25
+    PWD = 24
 
     rl_1 = 16
 
@@ -57,15 +56,23 @@ def main(cascaded, block_orentation, rotate):
     GPIO.setup(BT4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
-
-    # Đặt hàm callback cho nút nhấn với sự kiện cả RISING và FALLING or BOTH
     GPIO.add_event_detect(BT2, GPIO.FALLING, callback = bt2_callback, bouncetime=300) 
     GPIO.add_event_detect(BT3, GPIO.FALLING, callback = bt3_callback, bouncetime=300) 
     GPIO.add_event_detect(BT4, GPIO.FALLING, callback = bt4_callback, bouncetime=300)
     # 300ms
+    global ispressBT1
     global ispressBT2
     global ispressBT3
     global ispressBT4
+
+    # khoi tao dc
+    GPIO.setup(DIR, GPIO.OUT)
+    GPIO.setup(PWD, GPIO.OUT)
+    global PWD1, PWD2
+    PWD1 = GPIO.PWM(DIR,100)
+    PWD2 = GPIO.PWM(PWD,100)
+ 
+   
 
     #   khoi tao role
     GPIO.setup(rl_1,GPIO.OUT)
@@ -77,24 +84,30 @@ def main(cascaded, block_orentation, rotate):
     device.contrast(20)
 
     # debugging purpose
+    
+
     print("[-] Matrix initialized")
     #print hello world on the matrix display
     for i in range(9,-1,-1):
         msg = str(i)
         # debugging purpose
         print("[-] Printing: %s" % msg)
-
+        
+        time.sleep(0.1)
+ 
         # show_message(device, msg, fill = "white", font = proportional(CP437_FONT),scroll_delay=None)
-
-        show_message(device, msg, fill = "white", font = proportional(CP437_FONT))
+        show_message(device, msg, fill = "white", font = proportional(CP437_FONT),scroll_delay=0.1)
 
         if ispressBT2 and ispressBT3 and ispressBT4:
             while True:
                 show_message(device, msg, fill = "white", font = proportional(CP437_FONT))
-        
+
         if i == 0:
-            show_message(device, "Hello World", fill = "white", font = proportional(CP437_FONT),scroll_delay=0.1)
             GPIO.output(rl_1, True)
+            PWD1.start(20)
+            PWD2.start(0)
+
+            show_message(device, "Hello World", fill = "white", font = proportional(CP437_FONT),scroll_delay=0.1)
 
 
             
@@ -111,8 +124,10 @@ if __name__ == "__main__":
     # 2 = down -> up
     # 3 = left -> right
     try:
-        main(cascaded=1, block_orentation=0,rotate=3)
+        main(cascaded=1, block_orentation=0,rotate=1)
     except KeyboardInterrupt:
-        pass
+        PWD1.stop()
+        PWD2.stop()
+        GPIO.cleanup()
 
 
